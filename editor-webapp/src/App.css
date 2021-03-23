@@ -1,0 +1,16 @@
+.App-header{
+    display: flex;
+    align-items: center;
+    place-content: space-around;
+    height: 5vh;
+}
+
+.App-header h1{
+    display: inline-block;
+    margin: 0;
+}
+
+.App-header p{
+    display: inline-block;
+    margin: 0;
+}

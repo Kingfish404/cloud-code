@@ -1,0 +1,12 @@
+#index{
+    text-align: center;
+}
+
+#index .docs_list_item{
+    border: 1px solid black;
+    max-width: 100px;
+    display: inline-block;
+    word-break: break-word;
+    margin: 1em;
+    padding: 1em;
+}
