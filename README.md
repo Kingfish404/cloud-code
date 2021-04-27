@@ -32,3 +32,4 @@ Frameworks and libraries used
 * 建立文档管理体系
 * 优化协作逻辑
 * 历史记录等功能
+* 建立中心化通用配置文件

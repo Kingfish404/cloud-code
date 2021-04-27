@@ -1,5 +1,7 @@
 #index{
     text-align: center;
+    background-color: #f3f7ff;
+    min-height: 100vh;
 }
 
 #index .docs_list_item{

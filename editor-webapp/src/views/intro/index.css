@@ -1,0 +1,65 @@
+#intro{
+    display: flex;
+    flex-direction: column;
+    background-color: #f3f7ff;
+    min-height: 100vh;
+}
+
+#intro h1,h2,h3,p{
+    font-weight: normal;
+    word-wrap: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#intro p,img{
+    width: 100%;
+}
+
+.intro-block{
+    width: 100%;
+    min-height: 80vh;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    border-bottom: 1px solid #dddddd;
+}
+
+.intro-block img{
+    max-width: 700px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.main-info{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+}
+
+.about-applicate{
+    text-align: center;
+}
+
+.about-manifesto{
+    text-align: center;
+}
+
+.intro-go{
+    min-width: 10rem;
+    min-height: 3rem;
+    line-height: 3rem;
+    text-decoration: none;
+    color: black;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border: 1px solid #dddddd;
+    margin: 1rem;
+}
+
+.about-coop{
+    max-width: 500px;
+    padding: 1rem;
+}
