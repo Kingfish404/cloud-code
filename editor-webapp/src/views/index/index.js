@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
+import Footer from '../../components/footer';
+
 import './index.css'
 
 const sharedb = require('sharedb/lib/client');
@@ -136,11 +138,15 @@ function Index(props) {
     })
 
     return (<div id="index">
-        <h1>Index - User:{username}</h1>
-        <hr />
+        <nav className="index_nav">
+            <Link
+                className="index_back"
+                to="/">返回首页</Link>
+            <p>开始 - {username}</p>
+        </nav>
         <div className="doc_create">
             <div className="doc_meta">
-                <label>类型</label>
+                <label>语言</label>
                 <select onChange={(event) => {
                     // console.log('select:', event.target.value);
                     setLanguage(event.target.value);
@@ -164,15 +170,16 @@ function Index(props) {
                     language: language,
                     id: id,
                 }
-            }} >创建或进入文档:
+            }} >快速创建或进入文档:
         {language}-
         {id}</Link>
         </div>
-        <hr />
+        <h3>文档列表</h3>
         <div className="docs_list">
             {list}
         </div>
-        {isLogin ? <button onClick={() => { setIsLogin(false) }}>登出</button> : <Redirect to='/login' />}
+        {/* {isLogin ? <button onClick={() => { setIsLogin(false) }}>登出</button> : <Redirect to='/login' />} */}
+        {Footer}
     </div>)
 }
 

@@ -2,6 +2,8 @@ import {
     HashRouter as Router,
     Switch,
     Route,
+    Link,
+    Redirect,
 } from 'react-router-dom';
 
 import Intro from '../views/intro'
@@ -21,6 +23,9 @@ export default function MyRouter() {
                 <Route path='/login' component={Login}>
                 </Route>
                 <Route path='/workplace' component={Workspace}>
+                </Route>
+                <Route>
+                    <Redirect to="/"></Redirect>
                 </Route>
             </Switch>
         </Router>

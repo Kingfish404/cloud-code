@@ -8,6 +8,17 @@ import './index.css'
 
 const sharedb = require('sharedb/lib/client');
 
+function ToolBar(props) {
+    return (<div className='tool_bar'>
+        <Link
+            className="too_bar_back"
+            to='/index'>返回</Link>
+        <p>Cloud Code</p>
+        <button
+        >分享</button>
+    </div>)
+}
+
 class Workspace extends react.Component {
 
     constructor(props) {
@@ -132,12 +143,12 @@ class Workspace extends react.Component {
     }
 
     render() {
-        let leftPage;
+        let rightPage;
         let hasPreview = {
             markdown: null,
         }
         if (this.state.language === undefined || this.state.language in hasPreview) {
-            leftPage = (<div className="rightPage">
+            rightPage = (<div className="rightPage">
                 <div className="meta">
                     {this.state.id ?
                         "文档ID:" + this.state.id :
@@ -153,21 +164,24 @@ class Workspace extends react.Component {
                 />
             </div>);
         }
-        return (<div id="workspace">
-            <div className="leftPage">
-                <div className="meta">
-                    {this.state.language ?
-                        this.state.language :
-                        'markdown'}
+        return (<div className='main'>
+            {ToolBar()}
+            <div id="workspace">
+                <div className="leftPage">
+                    <div className="meta">
+                        {this.state.language ?
+                            this.state.language :
+                            'markdown'}
+                    </div>
+                    <Editor
+                        language={this.state.language}
+                        id={this.state.id}
+                        text={this.state.text}
+                        onMdTextChange={this.handleMdTextChange}
+                    />
                 </div>
-                <Editor
-                    language={this.state.language}
-                    id={this.state.id}
-                    text={this.state.text}
-                    onMdTextChange={this.handleMdTextChange}
-                />
+                {rightPage}
             </div>
-            {leftPage}
         </div>)
     }
 }

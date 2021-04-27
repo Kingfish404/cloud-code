@@ -5,6 +5,7 @@ function Footer(props) {
         justifyContent: 'space-evenly',
         alignItems: 'center',
         textAlign: 'center',
+        borderTop: '1px solid #dddddd',
     };
 
     const style_p = {

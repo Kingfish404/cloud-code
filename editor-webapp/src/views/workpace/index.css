@@ -1,9 +1,14 @@
+.main{
+    background-color: #f3f7ff;
+}
+
 #workspace{
     width: 100%;
     height: 100%;
     position: fixed;
     display: flex;
     flex-wrap: wrap;
+    background-color: #f3f7ff;
 }
 
 #workspace .leftPage{
@@ -25,4 +30,22 @@
 
 #workspace .meta p{
     margin: 0;
+}
+
+.tool_bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+}
+
+.too_bar_back{
+    text-decoration: none;
+    color: black;
+    height: 100%;
+}
+
+.tool_bar button{
+    border: none;
 }
