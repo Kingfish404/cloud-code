@@ -12,7 +12,7 @@ function Index(props) {
     let languages = [
         'markdown',
         'javascript',
-        'c++',
+        'cpp',
         'java',
         'python',
     ]
@@ -121,8 +121,8 @@ function Index(props) {
                                 id: item.id,
                             }
                         }}>
-                            <p>{item.id}</p>
                             <p>{item.language}</p>
+                            <p>{String(item.id).substring(String(item.id).indexOf('-') + 1)}</p>
                         </Link>
                         <button onClick={(event) => {
                             const obj = { id: item.id, language: item.language };

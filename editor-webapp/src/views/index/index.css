@@ -20,21 +20,22 @@
     align-items: center;
     border-bottom: 1px solid #dddddd;
     padding: 0 1rem;
+    height: 55px;
 }
 
-.index_nav img{
-    height: 2em;
-    width: 2em;
-}
-
-.index_nav .logo{
+.logo{
     display: flex;
     align-items: center;
     user-select: none;
     cursor: pointer;
 }
 
-.index_nav .logo p{
+.logo img{
+    height: 2rem;
+    width: 2em;
+}
+
+.logo p{
     margin: auto 1em;
     text-decoration: none;
     color: black;

@@ -24,8 +24,7 @@
     text-align: center;
     line-height: 1.5rem;
     font-size: 1rem;
-    border-bottom: 1px solid black;
-    border-top: 1px solid black;
+    border-bottom: 1px solid #dddddd;
 }
 
 #workspace .meta p{
@@ -33,9 +32,9 @@
 }
 
 .tool_bar{
-    width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0 1rem;
     align-items: center;
     text-align: center;
 }

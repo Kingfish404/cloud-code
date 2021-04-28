@@ -1,5 +1,5 @@
 import react, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Editor from '../../components/editor';
 import Preview from '../../components/preview';
 import ReconnectingWebSocket from 'reconnecting-websocket';
@@ -10,15 +10,25 @@ import './index.css'
 const sharedb = require('sharedb/lib/client');
 
 function ToolBar(props) {
+    let history = useHistory();
     useEffect(() => {
         window.clipboard = new ClipboardJS('.tool_share_btn')
         return () => {
         }
     }, []);
-    return (<div className='tool_bar'>
-        <Link
-            className="tool_bar_btn"
-            to='/index'>返回</Link>
+    return (<div className='index_nav'>
+        <div className="logo"
+            onClick={() => {
+                history.push('/index');
+            }}
+        >
+            <img
+                src="/logo192.png"
+                alt=""
+            >
+            </img>
+            <p>返回</p>
+        </div>
         <p>Cloud Code</p>
         <div
             className='tool_bar_btn tool_share_btn'
@@ -171,6 +181,10 @@ class Workspace extends react.Component {
         let rightPage;
         let hasPreview = {
             markdown: null,
+            javascript: null,
+            python: null,
+            cpp: null,
+            java: null,
         }
         if (this.state.language === undefined || this.state.language in hasPreview) {
             rightPage = (<div className="rightPage">
