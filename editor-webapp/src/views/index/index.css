@@ -1,10 +1,11 @@
 #index{
     text-align: center;
-    background-color: #f3f7ff;
+    background-color: #f3f7ffc4;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    margin: auto;
 }
 
 #index h1,h2,h3,p{
@@ -15,15 +16,89 @@
 
 .index_nav{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #dddddd;
+    padding: 0 1rem;
 }
 
-.index_back{
-    color: black;
+.index_nav img{
+    height: 2em;
+    width: 2em;
+}
+
+.index_nav .logo{
+    display: flex;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+}
+
+.index_nav .logo p{
+    margin: auto 1em;
     text-decoration: none;
-    border: 1px solid #f3f7ff;
+    color: black;
+}
+
+.index-workplace{
+    display: flex;
+}
+
+.doc-create{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100px;
+    max-width: 210px;
+    border: 1px solid #dddddd;
+    border-right: none;
+}
+
+.doc-meta{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.doc-input label{
+    display: block;
+}
+
+.doc-input select,input{
+    min-height: 30px;
+    max-width: 180px;
+    margin: 1rem;
+}
+
+.doc-input-sel{
+    width: 150px;
+}
+
+.doc-input-elm{
+    display: inline-block;
+}
+
+.doc_start{
+    display: inline-block;
+    padding: 1em;
+    margin: 1em;
+    text-decoration: none;
+    border: 1px solid #dddddd;
+    background-color: #2e3235;
+    color: white;
+    font-weight: bold;
+}
+
+.docs_main{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: auto;
+    border: 1px solid #dddddd;
+}
+
+.docs_title{
+    margin: 1rem;
 }
 
 #index .docs_list{
@@ -33,10 +108,43 @@
 }
 
 #index .docs_list_item{
-    border: 1px solid black;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 1rem;
+    margin: 0.5rem;
+}
+#index .docs_list_item:hover{
+    background-color: #eaebeb;
+}
+
+#index .docs_list_item_content{
+    min-height: 135px;
+    border: 1px solid #ddd;
+    border-radius: 1rem;
     max-width: 100px;
     display: inline-block;
     word-break: break-word;
-    margin: 1em;
     padding: 1em;
+    background-color: #dddddd;
+    user-select: none;
+}
+
+#index .docs_list_item a,button{
+    text-decoration: none;
+    color: black;
+    border: none;
+}
+
+@media screen and (max-width: 680px) {
+    .doc-create{
+        max-width: 40vw;
+    }
+
+    .doc-input-sel{
+        width: 25vw;
+    }
+
+    .doc-input-elm{
+        width: 25vw;
+    }
 }

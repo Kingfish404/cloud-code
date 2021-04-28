@@ -18,6 +18,7 @@ Frameworks and libraries used
 * [sharedb](https://github.com/share/sharedb)
 * [react-markdown](https://github.com/remarkjs/react-markdown)
 * [reconnecting-websocket](https://github.com/joewalnes/reconnecting-websocket)
+* [clipboard.js](https://clipboardjs.com/)
 
 ### editor-server
 

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import ReconnectingWebSocket from 'reconnecting-websocket';
 
 import Footer from '../../components/footer';
@@ -16,6 +16,8 @@ function Index(props) {
         'java',
         'python',
     ]
+    // TODO:fix this
+    // eslint-disable-next-line no-unused-vars
     const [isLogin, setIsLogin] = useState(true);
     const [id, setid] = useState('0000000000');
     const [language, setLanguage] = useState(languages[0]);
@@ -26,6 +28,7 @@ function Index(props) {
     const [list, setList] = useState(null);
     let option_languages = [];
     let username = 'default';
+    let history = useHistory();
 
     function handleConnectToServer(event) {
         // console.log('connect successful', event.target);
@@ -109,22 +112,24 @@ function Index(props) {
                 list_mydocs.push(<div className="docs_list_item"
                     key={index}
                 >
-                    <Link to={{
-                        pathname: '/workplace',
-                        state: {
-                            username: username,
-                            language: item.language,
-                            id: item.id,
-                        }
-                    }}>
-                        <p>{item.id}</p>
-                        <p>{item.language}</p>
-                    </Link>
-                    <button onClick={(event) => {
-                        const obj = { id: item.id, language: item.language };
-                        const op = { p: ['lists', index], ld: obj };
-                        mydocs.submitOp(op);
-                    }}>删除</button>
+                    <div className='docs_list_item_content'>
+                        <Link to={{
+                            pathname: '/workplace',
+                            state: {
+                                username: username,
+                                language: item.language,
+                                id: item.id,
+                            }
+                        }}>
+                            <p>{item.id}</p>
+                            <p>{item.language}</p>
+                        </Link>
+                        <button onClick={(event) => {
+                            const obj = { id: item.id, language: item.language };
+                            const op = { p: ['lists', index], ld: obj };
+                            mydocs.submitOp(op);
+                        }}>删除</button>
+                    </div>
                 </div >)
             })
             setList(list_mydocs);
@@ -139,45 +144,68 @@ function Index(props) {
 
     return (<div id="index">
         <nav className="index_nav">
-            <Link
-                className="index_back"
-                to="/">返回首页</Link>
+            <div className="logo"
+                onClick={() => {
+                    history.push('/');
+                }}
+            >
+                <img
+                    src="/logo192.png"
+                    alt=""
+                >
+                </img>
+                <p>Cloud Code</p>
+            </div>
             <p>开始 - {username}</p>
         </nav>
-        <div className="doc_create">
-            <div className="doc_meta">
-                <label>语言</label>
-                <select onChange={(event) => {
-                    // console.log('select:', event.target.value);
-                    setLanguage(event.target.value);
-                }}>
-                    {option_languages}
-                </select>
-                <label>
-                    id:
-            </label>
-                <input
-                    onChange={(event) => {
-                        // console.log('input:', event.target.value);
-                        setid(event.target.value);
-                    }}
-                    defaultValue={id}></input>
+        <div className="index-workplace">
+            <div className="doc-create">
+                <Link
+                    className="doc_start"
+                    to={{
+                        pathname: '/workplace',
+                        state: {
+                            username: username,
+                            language: language,
+                            id: id,
+                        }
+                    }} >快速创建或打开
+                    <p>{language}-{id}</p>
+                </Link>
+                <div className="doc-meta">
+                    <div className="doc-input">
+                        <label>语言</label>
+                        <select
+                            className="doc-input-sel"
+                            onChange={(event) => {
+                                // console.log('select:', event.target.value);
+                                setLanguage(event.target.value);
+                            }}>
+                            {option_languages}
+                        </select>
+                    </div>
+                    <div className="doc-input">
+                        <label>文档ID</label>
+                        <input
+                            className="doc-input-elm"
+                            onChange={(event) => {
+                                // console.log('input:', event.target.value);
+                                setid(event.target.value);
+                            }}
+                            defaultValue={id}>
+                        </input>
+                    </div>
+                </div>
             </div>
-            <Link to={{
-                pathname: '/workplace',
-                state: {
-                    username: username,
-                    language: language,
-                    id: id,
-                }
-            }} >快速创建或进入文档:
-        {language}-
-        {id}</Link>
+            <div className='docs_main'>
+                <h3 className='docs_title'>文档列表</h3>
+                <div className="docs_list">
+                    {list}
+                </div>
+            </div>
+
         </div>
-        <h3>文档列表</h3>
-        <div className="docs_list">
-            {list}
-        </div>
+
         {/* {isLogin ? <button onClick={() => { setIsLogin(false) }}>登出</button> : <Redirect to='/login' />} */}
         {Footer}
     </div>)

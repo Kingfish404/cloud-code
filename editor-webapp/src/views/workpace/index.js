@@ -1,21 +1,33 @@
-import react from 'react';
+import react, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Editor from '../../components/editor';
 import Preview from '../../components/preview';
 import ReconnectingWebSocket from 'reconnecting-websocket';
+import ClipboardJS from 'clipboard';
 
 import './index.css'
 
 const sharedb = require('sharedb/lib/client');
 
 function ToolBar(props) {
+    useEffect(() => {
+        window.clipboard = new ClipboardJS('.tool_share_btn')
+        return () => {
+        }
+    }, []);
     return (<div className='tool_bar'>
         <Link
-            className="too_bar_back"
+            className="tool_bar_btn"
             to='/index'>返回</Link>
         <p>Cloud Code</p>
-        <button
-        >分享</button>
+        <div
+            className='tool_bar_btn tool_share_btn'
+            data-clipboard-text={props.url + '#/workplace/?id=' + props.id}
+            onClick={() => {
+                console.log(props.url + '#/workplace/?id=' + props.id);
+                alert('链接复制成功，已经在剪切板，链接:\n' + props.url + '#/workplace/?id=' + props.id + '\n直接粘贴给你的好朋友叭');
+            }}
+        >分享</div>
     </div>)
 }
 
@@ -24,7 +36,7 @@ class Workspace extends react.Component {
     constructor(props) {
         super(props);
         const location = props.location;
-        console.log(location);
+        // console.log(location);
         this.state = {
             text: "",
             online: false,
@@ -32,6 +44,19 @@ class Workspace extends react.Component {
             id: location.state !== undefined ? location.state.id : '0000000000',
             language: location.state !== undefined ? location.state.language : 'markdown',
         };
+
+        // console.log('search:', this.props.location.search.substring(1));
+        // 获取当前浏览器是否有参数,如果有，则用参数替代id
+        var query = this.props.location.search.substring(1);
+        var vars = query.split('&');
+        for (let i of vars) {
+            var pair = i.split('=');
+            if (pair[0] === 'id' && pair[1].indexOf('-') !== -1) {
+                console.log(pair[1]);
+                this.state.id = pair[1];
+            }
+        }
+
         this.handleMdTextChange = this.handleMdTextChange.bind(this);
         this.handleConnectToServer = this.handleConnectToServer.bind(this);
         this.handleCloseServer = this.handleCloseServer.bind(this);
@@ -165,7 +190,7 @@ class Workspace extends react.Component {
             </div>);
         }
         return (<div className='main'>
-            {ToolBar()}
+            <ToolBar url={window.location.origin} id={this.state.id} />
             <div id="workspace">
                 <div className="leftPage">
                     <div className="meta">

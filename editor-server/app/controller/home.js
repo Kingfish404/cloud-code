@@ -14,7 +14,7 @@ class HomeController extends Controller {
     if (!ctx.websocket) {
       throw new Error('this function can only be use in websocket router');
     }
-    console.log('ws connected', Date.now());
+    // console.log('ws connected', Date.now());
 
     const stream = new WebSocketJSONStream(ctx.websocket);
     app.share.listen(stream);

@@ -26,7 +26,7 @@
 }
 
 .intro-block img{
-    max-width: 700px;
+    max-width: 600px;
     -webkit-user-select: none;
     -moz-user-select: none;
     user-select: none;
@@ -34,16 +34,9 @@
 
 .main-info{
     display: flex;
+    margin: auto 4rem;
     text-align: center;
     flex-direction: column;
-}
-
-.about-applicate{
-    text-align: center;
-}
-
-.about-manifesto{
-    text-align: center;
 }
 
 .intro-go{
@@ -59,7 +52,35 @@
     margin: 1rem;
 }
 
+.intro-info{
+    flex-direction: column;
+}
+
+.intro-info-theory{
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.intro-info-usage{
+    display: flex;
+}
+
+.intro-info-usage-p{
+    text-align: center;
+}
+
+.about-applicate{
+    text-align: center;
+}
+
+.about-manifesto{
+    text-align: center;
+}
+
 .about-coop{
     max-width: 500px;
-    padding: 1rem;
+    padding: 0 1rem;
 }

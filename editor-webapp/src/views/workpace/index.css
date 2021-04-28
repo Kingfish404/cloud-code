@@ -40,12 +40,9 @@
     text-align: center;
 }
 
-.too_bar_back{
+.tool_bar_btn{
+    cursor: pointer;
     text-decoration: none;
     color: black;
     height: 100%;
-}
-
-.tool_bar button{
-    border: none;
 }
