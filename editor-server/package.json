@@ -8,7 +8,12 @@
   },
   "dependencies": {
     "egg": "^2.15.1",
+    "egg-bcrypt": "^1.1.0",
+    "egg-cors": "^2.2.3",
+    "egg-jwt": "^3.1.7",
+    "egg-mongoose": "^3.3.1",
     "egg-scripts": "^2.11.0",
+    "egg-validate": "^2.0.2",
     "egg-websocket-plugin": "^1.0.1",
     "sharedb": "^1.7.0",
     "websocket-json-stream": "^0.0.3"

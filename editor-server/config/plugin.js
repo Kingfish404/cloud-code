@@ -11,4 +11,24 @@ module.exports = {
     enable: true,
     package: 'egg-websocket-plugin',
   },
+  mongoose: {
+    enable: true,
+    package: 'egg-mongoose',
+  },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
+  },
+  jwt: {
+    enable: true,
+    package: 'egg-jwt',
+  },
+  bcrypt: {
+    enable: true,
+    package: 'egg-bcrypt',
+  },
+  validate: {
+    enable: true,
+    package: 'egg-validate',
+  },
 };

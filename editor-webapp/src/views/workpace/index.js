@@ -31,6 +31,14 @@ function ToolBar(props) {
         </div>
         <p>Cloud Code</p>
         <div
+            className='tool_bar_btn tool_video_btn'
+            data-clipboard-text={props.url + '#/workplace/?id=' + props.id}
+            onClick={() => {
+                console.log(props.url + '#/workplace/?id=' + props.id);
+                alert('链接复制成功，已经在剪切板，链接:\n' + props.url + '#/workplace/?id=' + props.id + '\n直接粘贴给你的好朋友叭');
+            }}
+        >建立音频</div>
+        <div
             className='tool_bar_btn tool_share_btn'
             data-clipboard-text={props.url + '#/workplace/?id=' + props.id}
             onClick={() => {
