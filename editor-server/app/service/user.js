@@ -13,11 +13,15 @@ class UserService extends Service {
     return null;
   }
 
-  async find() {
-    const users = await this.ctx.model.User.find({});
+  async find(params) {
+    const rePageNum = Number(params.pageNum) || 1;
+    const rePageSize = Number(params.pageSize) || 10;
+    const users = await this.ctx.model.User.find({})
+      .skip((rePageNum - 1) * rePageSize)
+      .limit(rePageSize);
     return Object.assign({}, {
-      pageNum: 1,
-      pageSize: 10,
+      pageNum: rePageNum,
+      pageSize: rePageSize,
       list: users,
     });
   }

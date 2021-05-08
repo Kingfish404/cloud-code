@@ -11,21 +11,24 @@ describe('test/app/controller/home.test.js', () => {
     // yield ctx.service.xx();
   });
 
-  it('should POST /register', () => {
-    return app.httpRequest()
-      .post('/register')
-      .send({
-        email: '893739032@qq.com',
-        username: 'bobo',
-        password: 'bobo',
-        role: 'admin',
-      })
-      .expect(200);
-  });
+  // it('should POST /register', () => {
+  //   return app.httpRequest()
+  //     .post('/register')
+  //     .send({
+  //       email: '893739032@qq.com',
+  //       username: 'bobo',
+  //       password: 'bobo',
+  //       role: 'admin',
+  //     })
+  //     .expect(200);
+  // });
 
   it('should GET /', () => {
     return app.httpRequest()
       .get('/users')
-      .expect(200);
+      .expect(200)
+      .then(res => {
+        console.log(res.body);
+      });
   });
 });

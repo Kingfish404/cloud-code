@@ -12,18 +12,22 @@ class UserController extends Controller {
       role: [ 'admin', 'custom' ],
     });
     const res = await service.user.register(ctx.request.body);
+    console.log(res);
+    const newUser = ctx.helper.formerUser(res);
+    console.log(newUser);
     if (!res) {
       ctx.helper.failed({ ctx, res: '邮箱已被注册' });
     } else {
-      ctx.helper.succeed({ ctx, res });
+      ctx.helper.succeed({ ctx, res: newUser });
     }
   }
 
   async getUsers() {
-    // TODO 分页查询的query
     const { service, ctx } = this;
-    // TODO 编写userVO
-    const users = await service.user.find();
+    const res = await service.user.find(ctx.request.query);
+    const users = res.list.map(user => {
+      return ctx.helper.formerUser(user);
+    });
     ctx.helper.succeed({ ctx, res: users });
   }
 }

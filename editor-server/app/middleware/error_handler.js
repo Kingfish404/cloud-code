@@ -15,7 +15,7 @@ module.exports = () => {
       const error = status === 500 && app.config.env === 'prod' ? 'Internal Server Error' : err.message;
 
       // 仅供参考，需按自己的业务逻辑处理。
-      ctx.body = { error };
+      ctx.helper.failed({ ctx, res: err.errors, msg: error });
       ctx.status = status;
     }
   };

@@ -9,4 +9,12 @@ module.exports = {
     ctx.body = { code: '10000', data: res, message: msg };
     ctx.status = 200;
   },
+  formerUser(user) {
+    return Object.assign({}, {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      role: user.role,
+    });
+  },
 };
