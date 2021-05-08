@@ -75,9 +75,20 @@ class Workspace extends react.Component {
     componentDidMount() {
         // 组件装载时，尝试连接服务器
         const host = window.location.hostname;
-        this.socket = new ReconnectingWebSocket('ws://' + host + ':3210/ws');
+        let target_url = 'ws://' + host + ':3210/ws';
+        if (window.location.protocol === 'https:') {
+            target_url = 'wss://' + host + '/ws';
+        }
+        this.socket = new ReconnectingWebSocket(target_url);
         this.socket.onopen = this.handleConnectToServer;
         this.socket.onclose = this.handleCloseServer;
+    }
+
+    componentWillUnmount() {
+        // 组件卸载时，断开连接
+        if (this.socket) {
+            this.socket.close();
+        }
     }
 
     handleConnectToServer() {

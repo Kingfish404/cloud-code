@@ -97,7 +97,11 @@ function Index(props) {
 
     useEffect(() => {
         const host = window.location.hostname;
-        const socket = new ReconnectingWebSocket('ws://' + host + ':3210/ws');
+        let target_url = 'ws://' + host + ':3210/ws';
+        if (window.location.protocol === 'https:') {
+            target_url = 'wss://' + host + '/ws';
+        }
+        const socket = new ReconnectingWebSocket(target_url);
         socket.onopen = handleConnectToServer;
         return () => {
             socket.close();

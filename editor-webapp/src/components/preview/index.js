@@ -5,7 +5,7 @@ import './index.css'
 const gfm = require('remark-gfm')
 
 function Tools() {
-
+    return (<div className="preview-tools"></div>)
 }
 
 function Preview(props) {
@@ -22,6 +22,7 @@ function Preview(props) {
         return (<div
             id="preview"
         >
+            <Tools />
         </div>)
     } else {
         return (<div
