@@ -10,9 +10,10 @@ module.exports = app => {
   app.share = new shareDB();
 
   router.get('/', controller.home.index);
-  router.get('/user', jwt, controller.user.getUsers);
   router.post('/user/register', controller.user.register);
   router.post('/user/login', controller.user.login);
+  router.get('/user', jwt, controller.user.getUsers);
+  router.get('/user/info', jwt, controller.user.info);
 
   app.ws.route('/ws', controller.home.ws);
 };

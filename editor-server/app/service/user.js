@@ -30,6 +30,16 @@ class UserService extends Service {
     }
   }
 
+  async getCurrentUser(token) {
+    const { app, ctx } = this;
+    const decoded = app.jwt.verify(token.split(' ')[1], app.config.jwt.secret);
+    ctx.helper.failed({ ctx, res: 'User does not exist' });
+    const user = await ctx.model.User.findOne({ _id: decoded.id });
+    if (user) {
+      ctx.helper.succeed({ ctx, res: ctx.helper.formerUser(user) });
+    }
+  }
+
   async find(params, token) {
     const { app, ctx } = this;
     const decoded = app.jwt.verify(token.split(' ')[1], app.config.jwt.secret);

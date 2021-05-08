@@ -23,6 +23,11 @@ class UserController extends Controller {
     await service.user.login(ctx.request.body);
   }
 
+  async info() {
+    const { service, ctx } = this;
+    await service.user.getCurrentUser(ctx.header.authorization);
+  }
+
   async getUsers() {
     const { service, ctx } = this;
     await service.user.find(ctx.request.query, ctx.header.authorization);
