@@ -11,20 +11,26 @@ class UserController extends Controller {
       password: 'password',
       role: [ 'admin', 'custom' ],
     });
-    const res = await service.user.register(ctx.request.body);
-    if (!res) {
-      ctx.helper.failed({ ctx, res: '邮箱已被注册' });
-    } else {
-      ctx.helper.succeed({ ctx, res });
-    }
+    await service.user.register(ctx.request.body);
+  }
+
+  async login() {
+    const { service, ctx } = this;
+    ctx.validate({
+      email: 'email',
+      password: 'string',
+    });
+    await service.user.login(ctx.request.body);
+  }
+
+  async info() {
+    const { service, ctx } = this;
+    await service.user.getCurrentUser(ctx.header.authorization);
   }
 
   async getUsers() {
-    // TODO 分页查询的query
     const { service, ctx } = this;
-    // TODO 编写userVO
-    const users = await service.user.find();
-    ctx.helper.succeed({ ctx, res: users });
+    await service.user.find(ctx.request.query, ctx.header.authorization);
   }
 }
 

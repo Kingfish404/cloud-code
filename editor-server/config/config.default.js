@@ -15,10 +15,8 @@ module.exports = appInfo => {
   // use for cookie sign key, should change to your own and keep security
   config.keys = appInfo.name + '_1615443921754_5538';
 
-  config.middleware = [ 'errorHandler' ];
-
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [ 'errorHandler' ];
 
   // cluster config
   config.cluster = {
